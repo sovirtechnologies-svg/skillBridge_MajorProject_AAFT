@@ -1,8 +1,8 @@
-# SkillBridge 🚀
+# SkillBridge 
 
 SkillBridge is an AI-powered job recommendation and professional networking platform designed to connect candidates with the right opportunities using advanced machine learning.
 
-## 🌟 Features
+##  Features
 
 *   **AI-Powered Job Matching**: Uses Sentence Transformers (`all-MiniLM-L6-v2`) to semantically match search queries with job descriptions.
 *   **Resume Analysis**: Upload your resume (PDF, DOCX, or TXT) to automatically extract skills and find the best-fitting job opportunities.
@@ -10,19 +10,19 @@ SkillBridge is an AI-powered job recommendation and professional networking plat
 *   **Community Posts**: A social feature for users to share updates, achievements, and insights (Prototype support for creating and deleting posts).
 *   **Candidate Recommendations**: View potential candidates and their skill sets.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 *   **Backend**: Python, Flask
 *   **Machine Learning**: Scikit-learn, Sentence Transformers, NumPy
 *   **Frontend**: HTML5, JavaScript, CSS (Tailwind CSS)
 *   **Data Processing**: Pandas, PyPDF, Python-Docx
 
-## 📋 Prerequisites
+##  Prerequisites
 
 *   Python 3.8 or higher
 *   pip (Python package manager)
 
-## 🚀 Installation & Setup
+##  Installation & Setup
 
 1.  **Clone the Repository**
     ```bash
@@ -66,7 +66,7 @@ SkillBridge is an AI-powered job recommendation and professional networking plat
     *   Open `index.html` in your web browser.
     *   *Tip: For the best experience, use a local development server extension (like Live Server in VS Code) to serve the frontend files.*
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 skillbridge/
@@ -83,7 +83,7 @@ skillbridge/
     └── logo.jpg          # Application assets
 ```
 
-## ⚠️ Troubleshooting
+## Troubleshooting
 
 *   **"Models not found" Error**: Ensure you run `python train_model.py` before starting `app.py`.
 *   **CORS Issues**: If checking from a different port/frontend server, ensure `Flask-CORS` is enabled (it is by default in `app.py`).
