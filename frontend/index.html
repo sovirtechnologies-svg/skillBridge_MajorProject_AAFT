@@ -1,0 +1,701 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge - Premium Job Match Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: {
+                            50: '#ecfeff',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                            800: '#155e75',
+                            900: '#164e63'
+                        },
+                        blue: {
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a'
+                        },
+                        emerald: {
+                            400: '#34d399',
+                            500: '#10b981'
+                        },
+                        teal: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6'
+                        },
+                        pink: {
+                            400: '#f472b6',
+                            500: '#ec4899'
+                        },
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            800: '#1e293b',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Glass Morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Premium Gradients */
+        .gradient-cyan-blue {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+        }
+
+        .gradient-blue-purple {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        .gradient-emerald-teal {
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+        }
+
+        .gradient-pink-rose {
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+        }
+
+        /* Smooth Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .animate-slide-in-right {
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Stagger Animations */
+        .stagger-1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
+        .stagger-4 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        /* Hover Effects */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+        }
+
+        /* Premium Buttons */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-premium:hover::before {
+            left: 100%;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #0891b2, #2563eb);
+        }
+
+        /* Loading Shimmer */
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* Parallax Background */
+        .parallax-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0891b2 100%);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        /* Job Card Premium Style */
+        .job-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .job-card:hover::before {
+            left: 100%;
+        }
+
+        /* Skill Badge */
+        .skill-badge {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Premium Input */
+        .input-premium {
+            transition: all 0.3s ease;
+        }
+
+        .input-premium:focus {
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+            border-color: #06b6d4;
+        }
+
+        /* Auth Screen Background */
+        .auth-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #06b6d4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-bg::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .auth-bg::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            background: linear-gradient(90deg, #06b6d4, #3b82f6, #06b6d4);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- AUTH SCREEN -->
+    <div id="auth-screen" class="auth-bg min-h-screen flex items-center justify-center p-4">
+        <div class="glass w-full max-w-md p-8 rounded-2xl shadow-2xl text-center animate-scale-in relative z-10">
+            <div class="mb-6">
+                <div class="flex justify-center mb-4">
+                    <img src="logo.jpg" alt="SkillBridge" class="h-20 w-auto">
+                </div>
+                <p class="text-slate-600 font-medium">Your gateway to premium opportunities</p>
+            </div>
+
+            <form id="login-form" class="space-y-4">
+                <input type="email" id="login-email" placeholder="Email Address" required
+                    class="w-full p-4 bg-white border border-slate-200 rounded-xl input-premium focus:outline-none text-sm font-medium">
+                <input type="password" id="login-pass" placeholder="Password" required
+                    class="w-full p-4 bg-white border border-slate-200 rounded-xl input-premium focus:outline-none text-sm font-medium">
+                <button type="submit"
+                    class="w-full gradient-cyan-blue text-white font-bold py-4 rounded-xl btn-premium hover-glow shadow-lg">
+                    Sign In <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+                <p class="text-sm text-slate-600 mt-6">New to SkillBridge? <a href="#" id="show-signup"
+                        class="text-cyan-600 font-bold hover:text-cyan-700 transition">Join now</a></p>
+            </form>
+
+            <form id="signup-form" class="space-y-4 hidden">
+                <input type="text" id="signup-name" placeholder="Full Name" required
+                    class="w-full p-4 bg-white border border-slate-200 rounded-xl input-premium focus:outline-none text-sm font-medium">
+                <input type="email" id="signup-email" placeholder="Email Address" required
+                    class="w-full p-4 bg-white border border-slate-200 rounded-xl input-premium focus:outline-none text-sm font-medium">
+                <input type="password" id="signup-pass" placeholder="Create Password" required
+                    class="w-full p-4 bg-white border border-slate-200 rounded-xl input-premium focus:outline-none text-sm font-medium">
+                <button type="submit"
+                    class="w-full gradient-cyan-blue text-white font-bold py-4 rounded-xl btn-premium hover-glow shadow-lg">
+                    Create Account <i class="fa-solid fa-sparkles ml-2"></i>
+                </button>
+                <p class="text-sm text-slate-600 mt-6">Already a member? <a href="#" id="show-login"
+                        class="text-cyan-600 font-bold hover:text-cyan-700 transition">Sign in</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="app-screen"
+        class="hidden min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
+
+        <!-- Premium Navigation -->
+        <nav class="glass sticky top-0 z-50 shadow-lg">
+            <div class="max-w-7xl mx-auto flex justify-between items-center h-20 px-4 md:px-6">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center">
+                        <img src="logo.jpg" alt="SkillBridge" class="h-10 md:h-12 w-auto">
+                    </div>
+
+                    <div
+                        class="hidden md:flex items-center bg-white rounded-full px-5 py-3 shadow-md hover-lift w-64 lg:w-80 transition-all">
+                        <i class="fa-solid fa-magnifying-glass text-cyan-600 mr-3"></i>
+                        <input type="text" id="nav-search" placeholder="Search jobs, skills..."
+                            class="bg-transparent border-none outline-none text-sm w-full font-medium">
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-6 md:gap-8 text-slate-600">
+                    <div class="nav-item flex flex-col items-center cursor-pointer hover:text-cyan-600 transition-all duration-300 group active"
+                        data-target="home" onclick="switchTab('home')">
+                        <i
+                            class="fa-solid fa-house text-lg md:text-xl mb-1 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[10px] md:text-xs font-semibold">Home</span>
+                    </div>
+
+                    <div class="nav-item flex flex-col items-center cursor-pointer hover:text-cyan-600 transition-all duration-300 group"
+                        data-target="jobs" onclick="switchTab('jobs')">
+                        <i
+                            class="fa-solid fa-briefcase text-lg md:text-xl mb-1 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[10px] md:text-xs font-semibold">Jobs</span>
+                    </div>
+
+                    <div class="nav-item flex flex-col items-center cursor-pointer hover:text-emerald-600 transition-all duration-300 group"
+                        data-target="learning" onclick="switchTab('learning')">
+                        <i
+                            class="fa-solid fa-graduation-cap text-lg md:text-xl mb-1 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[10px] md:text-xs font-semibold">Learn</span>
+                    </div>
+
+                    <div class="flex flex-col items-center cursor-pointer hover:text-pink-500 transition-all duration-300 group"
+                        onclick="handleLogout()">
+                        <i
+                            class="fa-solid fa-right-from-bracket text-lg md:text-xl mb-1 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[10px] md:text-xs font-semibold">Logout</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="flex-grow max-w-7xl mx-auto w-full pt-6 px-4 md:px-6 pb-20 md:pb-8">
+
+            <!-- TAB: HOME (Posts & Profile) -->
+            <section id="view-home" class="view-section grid grid-cols-1 lg:grid-cols-12 gap-6 animate-fade-in">
+
+                <!-- Profile Sidebar (Visible on Desktop) -->
+                <aside class="hidden lg:block lg:col-span-3 space-y-6">
+                    <!-- Profile Card -->
+                    <div class="glass rounded-2xl shadow-xl overflow-hidden hover-lift">
+                        <div class="h-20 gradient-blue-purple"></div>
+                        <div class="flex justify-center -mt-12">
+                            <img id="user-avatar" src="" alt="Profile"
+                                class="w-24 h-24 rounded-full border-4 border-white shadow-xl">
+                        </div>
+                        <div class="text-center px-5 pb-4 pt-3">
+                            <h3 id="display-name" class="font-bold text-xl text-slate-900">User</h3>
+                            <p class="text-xs text-slate-500 mt-2 font-medium">Software Engineer</p>
+                        </div>
+                        <div class="px-5 pb-5 space-y-2">
+                            <div class="flex justify-between items-center p-3 rounded-xl hover:bg-slate-50 transition">
+                                <span class="text-xs font-semibold text-slate-600">Profile Views</span>
+                                <span class="text-sm font-bold text-cyan-600">142</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Posts Feed -->
+                <main class="lg:col-span-6 space-y-6">
+                    <!-- Create Post -->
+                    <div class="glass rounded-2xl p-6 shadow-xl">
+                        <div class="flex items-start gap-4">
+                            <img id="current-user-avatar" src="" alt="User"
+                                class="w-12 h-12 rounded-full border-2 border-cyan-500 hidden md:block">
+                            <div class="flex-grow">
+                                <textarea id="post-content" rows="3"
+                                    class="w-full p-4 bg-white/50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 transition resize-none text-sm"
+                                    placeholder="Share your thoughts..."></textarea>
+                                <div class="flex justify-between items-center mt-3">
+                                    <button onclick="createPost()"
+                                        class="ml-auto gradient-cyan-blue text-white px-6 py-2 rounded-xl font-bold text-sm btn-premium shadow-md flex items-center gap-2">
+                                        <i class="fa-solid fa-paper-plane"></i> Post
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Posts Container -->
+                    <div id="posts-container" class="space-y-6">
+                        <div class="text-center py-10">
+                            <i class="fa-solid fa-circle-notch fa-spin text-cyan-500 text-3xl"></i>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- News/Stats (Desktop Only Right Sidebar) -->
+                <aside class="hidden lg:block lg:col-span-3 space-y-6">
+                    <div class="glass rounded-2xl p-5 shadow-xl">
+                        <h3 class="font-bold text-lg text-slate-900 mb-4 flex items-center">
+                            <i class="fa-solid fa-newspaper text-pink-500 mr-2"></i> Trending News
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="p-3 rounded-xl hover:bg-pink-50 transition cursor-pointer">
+                                <div class="text-sm font-bold text-slate-900">Tech hiring surges 20%</div>
+                                <div class="text-xs text-slate-500 mt-1">1d ago â€¢ 5,000 readers</div>
+                            </li>
+                            <li class="p-3 rounded-xl hover:bg-pink-50 transition cursor-pointer">
+                                <div class="text-sm font-bold text-slate-900">Top Skills for 2025</div>
+                                <div class="text-xs text-slate-500 mt-1">4h ago â€¢ 2,300 readers</div>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </section>
+
+            <!-- TAB: JOBS -->
+            <section id="view-jobs" class="view-section hidden animate-fade-in max-w-4xl mx-auto space-y-6">
+                <!-- Job Search Header -->
+                <div class="glass rounded-2xl p-6 shadow-xl bg-gradient-to-r from-blue-50 to-cyan-50">
+                    <h2 class="font-bold text-2xl text-slate-900 mb-4 flex items-center">
+                        <i class="fa-solid fa-briefcase text-cyan-600 mr-3"></i> Find Your Next Role
+                    </h2>
+
+                    <div class="space-y-4">
+                        <!-- Keyword Search -->
+                        <div class="flex gap-2">
+                            <div class="relative flex-grow">
+                                <i
+                                    class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
+                                <input type="text" id="job-keyword-search"
+                                    placeholder="Search by job title, company, or keywords..."
+                                    class="w-full pl-12 p-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-medium">
+                            </div>
+                            <button id="job-keyword-btn"
+                                class="bg-slate-900 text-white px-6 rounded-xl font-bold hover:bg-slate-800 transition shadow-lg">
+                                Search
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Skills Search -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-2">Filter by
+                                    Skills</label>
+                                <div class="flex gap-2">
+                                    <input type="text" id="skills-input" placeholder="e.g. Python, React"
+                                        class="w-full p-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 text-sm">
+                                    <button onclick="searchBySkills()"
+                                        class="bg-slate-800 text-white px-4 rounded-xl hover:bg-slate-900 transition">
+                                        <i class="fa-solid fa-filter"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Resume Upload -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-2">AI Match from
+                                    Resume</label>
+                                <div
+                                    class="relative border-2 border-dashed border-cyan-300 rounded-xl bg-white hover:bg-cyan-50 transition cursor-pointer h-[50px] flex items-center justify-center">
+                                    <input type="file" id="resume-upload"
+                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                    <span class="text-xs font-bold text-cyan-600 flex items-center">
+                                        <i class="fa-solid fa-cloud-arrow-up mr-2 text-lg"></i> Upload PDF/DOCX
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Results -->
+                <div class="glass rounded-2xl p-5 shadow-xl">
+                    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-4">
+                        <h3 class="font-bold text-xl text-slate-900">Job Listings</h3>
+                        <span id="feed-status"
+                            class="text-xs font-bold text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full">Recommended</span>
+                    </div>
+
+                    <!-- Progress Bar (Hidden by default) -->
+                    <div id="scan-progress" class="hidden mb-4">
+                        <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                            <div class="progress-bar h-full w-2/3 rounded-full"></div>
+                        </div>
+                        <p class="text-center text-xs text-cyan-600 font-bold mt-2">AI Analyzing...</p>
+                    </div>
+
+                    <div id="job-feed-container" class="space-y-2">
+                        <!-- Jobs injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: LEARNING -->
+            <section id="view-learning" class="view-section hidden animate-fade-in max-w-4xl mx-auto">
+                <div class="glass rounded-2xl shadow-xl overflow-hidden mb-6">
+                    <div class="gradient-emerald-teal p-8 text-white text-center">
+                        <i class="fa-solid fa-graduation-cap text-5xl mb-4 text-emerald-100"></i>
+                        <h2 class="font-bold text-3xl mb-2">SkillBridge Learning</h2>
+                        <p class="text-emerald-50 max-w-lg mx-auto">Upskill and get certified. Our AI recommends courses
+                            based on market gaps.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Course Card 1 -->
+                    <div class="glass rounded-2xl p-5 shadow-lg hover-lift cursor-pointer">
+                        <div class="h-40 rounded-xl bg-slate-200 mb-4 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80"
+                                class="w-full h-full object-cover">
+                            <div class="absolute top-2 right-2 bg-white px-2 py-1 rounded-md text-xs font-bold shadow">
+                                4.8 â­</div>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900">Advanced AI Architect</h3>
+                        <p class="text-xs text-slate-500 mb-3">Master LLMs and Neural Networks</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-emerald-600 font-bold text-sm">Free</span>
+                            <button class="text-xs bg-slate-900 text-white px-3 py-1 rounded-lg">Enroll</button>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 2 -->
+                    <div class="glass rounded-2xl p-5 shadow-lg hover-lift cursor-pointer">
+                        <div class="h-40 rounded-xl bg-slate-200 mb-4 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80"
+                                class="w-full h-full object-cover">
+                            <div class="absolute top-2 right-2 bg-white px-2 py-1 rounded-md text-xs font-bold shadow">
+                                4.9 â­</div>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900">React & Next.js Pro</h3>
+                        <p class="text-xs text-slate-500 mb-3">Build Scalable Web Apps</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-emerald-600 font-bold text-sm">$19.99</span>
+                            <button class="text-xs bg-slate-900 text-white px-3 py-1 rounded-lg">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- MOBILE BOTTOM NAV (Visible < md) -->
+        <div
+            class="md:hidden fixed bottom-0 left-0 w-full glass border-t border-slate-200 z-50 px-6 py-3 flex justify-between items-center pb-safe">
+            <button onclick="switchTab('home')"
+                class="nav-item-mobile active flex flex-col items-center text-slate-400 hover:text-cyan-600 transition"
+                data-target="home">
+                <i class="fa-solid fa-house text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">Home</span>
+            </button>
+            <button onclick="switchTab('jobs')"
+                class="nav-item-mobile flex flex-col items-center text-slate-400 hover:text-cyan-600 transition"
+                data-target="jobs">
+                <i class="fa-solid fa-briefcase text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">Jobs</span>
+            </button>
+            <button onclick="switchTab('learning')"
+                class="nav-item-mobile flex flex-col items-center text-slate-400 hover:text-emerald-600 transition"
+                data-target="learning">
+                <i class="fa-solid fa-graduation-cap text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">Learn</span>
+            </button>
+            <button onclick="handleLogout()"
+                class="flex flex-col items-center text-slate-400 hover:text-pink-600 transition">
+                <i class="fa-solid fa-user text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">Profile</span>
+            </button>
+        </div>
+
+        <script src="app.js"></script>
+</body>
+
+</html>
